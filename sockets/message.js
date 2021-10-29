@@ -1,5 +1,3 @@
-const Message = require('../models/Message');
-
 const onlineClients = {};
 
 const socketController = (io) => (socket) => {
@@ -16,7 +14,6 @@ const socketController = (io) => (socket) => {
   socket.on('message', async ({ chatMessage, nickname }) => {
     const dateStr = new Date().toLocaleString('en-GB').replace(/\//g, '-').replace(',', '');
 
-    await Message.saveMessage({ message: chatMessage, nickname, timestamp: dateStr });
     const message = `(${dateStr}) ${nickname}: ${chatMessage}`;
     io.emit('message', message);
   });

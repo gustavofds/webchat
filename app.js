@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const randomString = require('randomstring');
-const Message = require('./models/Message');
 
 const app = express();
 
@@ -17,11 +16,13 @@ app.get('/', async (_req, res) => {
     charset: 'alphanumeric',
   });
 
-  const messages = await Message.getAll();
-
   res.status(200).render('index', {
+    messages: [{
+      timestamp: new Date().toLocaleString('pt-BR'),
+      nickname: 'Admin',
+      message: 'Bem vindo ao Chat!',
+    }],
     randomNickname,
-    messages,
   });
 });
 
