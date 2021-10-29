@@ -1,4 +1,10 @@
-const socket = window.io();
+/* eslint-disable */
+import randomstring from 'randomstring';
+import { io } from 'socket.io-client';
+
+const socket = io();
+
+console.log('Random String: ', randomstring.generate());
     
 const messagesUl = document.getElementById('messages-list');
 const usersUl = document.getElementById('online-clients');
