@@ -6,7 +6,7 @@ const messagesSocket = require('./sockets/message');
 
 dotenv.config();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 const io = SocketIO(server, {
