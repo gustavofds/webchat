@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const randomString = require('randomstring');
 const Message = require('./models/Message');
 
 const app = express();
 
+app.use(cors());
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
