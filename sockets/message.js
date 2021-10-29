@@ -1,14 +1,13 @@
 const onlineClients = {};
 
 const socketController = (io) => (socket) => {
-  // console.log(`New connection. Id: ${socket.id}`);
+  console.log(`New connection. Id: ${socket.id}`);
   socket.emit('checkNickname');
   socket.emit('clientsUpdate', onlineClients);
 
   socket.on('nickname', (nickname) => {
     onlineClients[socket.id] = nickname;
     io.emit('clientsUpdate', onlineClients);
-    console.log(onlineClients);
   });
 
   socket.on('message', async ({ chatMessage, nickname }) => {
